@@ -34,7 +34,7 @@ source_suffix = '.rst'
 source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'TracGuide'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Trac Manual del Usuario'
@@ -172,7 +172,7 @@ htmlhelp_basename = 'TracManualdelUsuariodoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('TracGuide', 'TracManualdelUsuario.tex', u'Trac Manual del Usuario Documentation',
+  ('index', 'TracManualdelUsuario.tex', u'Trac Manual del Usuario Documentation',
    u'Milton Mazzarri', 'manual'),
 ]
 
