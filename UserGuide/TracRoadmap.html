@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>La Hoja de Ruta &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="la-hoja-de-ruta">
+<span id="tracroadmap"></span><h1>La Hoja de Ruta<a class="headerlink" href="#la-hoja-de-ruta" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En esta sección podrá obtener una vista del sistema de tickets que
+le ayude a planificar y manejar el futuro desarrollo del proyecto.</p>
+<div class="section" id="la-vista-de-la-hoja-de-ruta">
+<h2>La Vista de la hoja de ruta<a class="headerlink" href="#la-vista-de-la-hoja-de-ruta" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Básicamente, la hoja de ruta es una lista de futuros hitos. Usted
+puede añadir una descripción a dichos hitos usando la misma
+sintaxis presente en el sistema Wiki, con ello podrá describir
+los objetivos principales, por ejemplo. Además, mientras los
+tickets son añadidos a un hito, la proporción entre
+tickets <em>activos</em> y <em>resueltos</em> son mostrados en la barra de
+progreso del hito correspondiente.</p>
+</div>
+<div class="section" id="la-vista-de-los-hitos">
+<h2>La vista de los hitos<a class="headerlink" href="#la-vista-de-los-hitos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es posible obtener más detalle acerca de las estadísticas de un
+hito al entrar en la página individual del mismo. Por omisión,
+la proporción entre tickets activos y resueltos será agrupada y
+mostrada por componente. Usted puede reagrupar el estado de los
+tickets usando otros criterios, como por ejemplo el propietarios
+de los tickets o de acuerdo a su severidad. Podrá visualizar el
+detalle de los tickets resultantes al hacer clic en el número
+mostrado, esto aplica tanto para tickets activos como resultos.</p>
+</div>
+<div class="section" id="soporte-para-icalendar">
+<h2>Soporte para iCalendar<a class="headerlink" href="#soporte-para-icalendar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La <em>hoja de ruta</em>  soporta el formato
+<a class="reference external" href="http://www.ietf.org/rfc/rfc2445.txt">iCalendar</a> para mantener
+el seguimiento de hitos planificados y los tickets relacionados
+a partir de su software de calendario favorito. Entra las aplicaciones
+que soportan la especificación iCalendar se encuentran las siguientes:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.apple.com/ical/">Apple iCal</a> para Mac OS X</li>
+<li><a class="reference external" href="http://www.mozilla.org/projects/calendar/">Mozilla Calendar</a> (multiplataforma)</li>
+<li><a class="reference external" href="http://chandlerproject.org">Chandler</a></li>
+<li><a class="reference external" href="http://kdepim.kde.org/components/korganizer.php">Korganizer</a>,
+la aplicación de calendario para el proyecto <a class="reference external" href="http://www.kde.org/">KDE</a></li>
+<li><a class="reference external" href="http://www.novell.com/de-de/products/desktop/features/evolution.html">Evolution</a></li>
+</ul>
+</blockquote>
+<p>Para subscribirse a la hoja de ruta, copie el enlace iCalendar que se encuentra al
+fondo de la página y seleccione la opción <em>Subscribirse a un calendario remoto</em>
+(o similar) en su aplicación favorita para el manejo de calendarios, inserte la URL
+que recien acaba de copiar.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Para que los tickets sean incluidos como tareas al calendario, usted necesita haber iniciado sesión cuando copie el enlace iCalendar. Usted solamente verá los tickets asignados a su persona, y asociados a un hito particular.</p>
+</div>
+<p>Mayor información sobre iCalendar podrá encontrarla en <a class="reference external" href="http://en.wikipedia.org/wiki/ICalendar">Wikipedia</a>.</p>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea También<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="TracTickets.html#tractickets"><em>Tickets de Trac</em></a>.</li>
+<li><a class="reference external" href="TracReports.html#tracreports"><em>Reportes de Trac</em></a>.</li>
+<li><a class="reference external" href="TracQuery.html#tracquery"><em>Consultas en Trac</em></a>.</li>
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a>.</li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">La Hoja de Ruta</a><ul>
+<li><a class="reference external" href="#la-vista-de-la-hoja-de-ruta">La Vista de la hoja de ruta</a></li>
+<li><a class="reference external" href="#la-vista-de-los-hitos">La vista de los hitos</a></li>
+<li><a class="reference external" href="#soporte-para-icalendar">Soporte para iCalendar</a></li>
+<li><a class="reference external" href="#vea-tambien">Vea También</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracRoadmap.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

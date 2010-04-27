@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hitórico de revisiones &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hitorico-de-revisiones">
+<span id="tracrevisionlog"></span><h1>Hitórico de revisiones<a class="headerlink" href="#hitorico-de-revisiones" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Cuando navega el repositorio, siempre es posible consultar la vista de
+<em>histórico de revisiones</em> correspondiente a la ruta que actualmente
+está viendo. Esto le mostrará una lista de los conjuntos de cambios más
+recientes en los cuales la ruta actual o sus descendientes hayan sido
+modificados.</p>
+<div class="section" id="el-formulario-del-historico-de-revisiones">
+<h2>El formulario del histórico de revisiones<a class="headerlink" href="#el-formulario-del-historico-de-revisiones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es posible establecer la revisión a partir de la cual el histórico
+de revisiones deberá comenzar, usando el campo <em>View log starting
+at</em>. Un valor vacío o un valor <em>head</em> es tomado como el conjunto
+de cambios más reciente.</p>
+<p>También es posible especificar la revisión en la cual el histórico
+de revisiones deberá detenerse, usando el campo <em>back to</em>. Por
+omisión, si es dejado vacío, significa que el histórico de revisiones
+se detendrá tan pronto como se hayan listado 100 revisiones.</p>
+<p>Además, existen tres modos de operación del histórico de revisiones.</p>
+<p>Por omisión, el histórico de revisiones <em>stops on copy</em>, esto significa
+que siempre que se detecte una operación <em>Agregar</em>, <em>Copiar</em> o
+<em>Renombrar</em>, no se mostrará una revisión previa. Esto es muy
+conveniente cuando se trabaja con ramas, puesto que se observa la
+historia correspondiente a aquello hecho en la rama.</p>
+<p>También es posible indicar que se desea ver que sucedió antes de una
+operación <em>Copiar</em> o <em>Renombrar</em>, seleccionando el modo <em>Follow
+copies</em>. Esto pasará todos los cambios hechos al copiar o renombrar.
+Cada vez que el nombre de la ruta o <em>path</em> cambie, existirá un nivel
+de indentación adicional. De esa manera, los cambios en las diferentes
+rutas son fácilmente agrupadas visualmente.</p>
+<p>Además es también posible pasar a través de los cambios hechos por la
+operación <em>Agregar</em>, esto permitiría ver si existió algún cambio hecho
+por la operación <em>Borrar</em> en esa ruta, antes de <em>Agregar</em>. Este modo
+corresponde al modo denominado <em>Show only adds, moves and deletes</em>.
+Mientras que este modo puede resultar útil algunas veces, tenga cuidado
+al usarlo puesto que esta operación requiere de recursos de manera
+intensiva.</p>
+<p>Finalmente, también existe la casilla de verificación <em>Show full log
+messages</em>, la cual controla si el contenido completo del registro de
+mensaje de envío debe mostrarse para cada cambio, o si solamente debe
+mostrarse una versión reducida de los mismos.</p>
+</div>
+<div class="section" id="la-informacion-del-historico-de-revisiones">
+<h2>La información del histórico de revisiones<a class="headerlink" href="#la-informacion-del-historico-de-revisiones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para cada entrada del histórico de revisiones, se muestran 7 columnas:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>La primera columna contiene un par de botones de radio que deben
+ser usados para seleccionar la <em>vieja</em> y la <em>nueva</em> revisión que
+será usada en [wiki:TracRevisionLog#viewingtheactualchanges ver
+los cambios actuales].</li>
+<li>Una leyenda de colores (similar a la usada para el
+[wiki:TracChangeset#ChangesetHeader conjunto de cambios]) que
+indica el tipo de cambio.
+Haciendo clic en esta columna recarga el histórico de revisiones
+así que se reinicia con este cambio.</li>
+<li>La <strong>Fecha</strong> en la que el cambio se realizó.</li>
+<li>El número de la <strong>Revisión</strong>, mostrado como <cite>&#64;xyz</cite>.
+Esto es un enlace al TracBrowser, usando dicha revisión como la
+línea base.</li>
+<li>El número del <strong>Conjunto de cambios</strong>, mostrado como <cite>[xyz]</cite>.
+Esto es un enlace a la vista de TracChangeset.</li>
+<li>El <strong>Autor</strong> del cambio.</li>
+<li>El <strong>Mensaje de registro</strong>, el cual puede contener un sumario o el
+mensaje completo del registro de envío, esto depende del valor de
+la casilla de verificación <em>Show full log messages</em> que se muestra
+en el formulario superior.</li>
+</ol>
+</blockquote>
+</div>
+<div class="section" id="inspeccionando-los-cambios-entre-revisiones">
+<h2>Inspeccionando los cambios entre revisiones<a class="headerlink" href="#inspeccionando-los-cambios-entre-revisiones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los botones <em>View changes...</em> (ubicados arriba y abajo de la lista de
+cambios, en el lado izquierdo) mostraran el conjunto de diferencias
+correspondientes a los cambios agregados a partir de la revisión
+<em>vieja</em> (primer botón de radio) hasta la <em>nueva</em> revisión (segundo
+botón de radio), en la vista de TracChangeset.</p>
+<p>Note que la revisión <em>vieja</em> no necesariamente debe ser anterior a la
+revisión <em>nueva</em>, simplemente da una base para establecer la
+diferencia. Por lo tanto, fácilmente es posible generar un <em>diferencia
+reversa</em>, esto con el fin de revertir todo aquello que se ha hecho en el
+rango de revisiones indicadas.</p>
+<p>Finalmente, si las dos revisiones son idénticas, el correspondiente
+conjunto de cambios será mostrado (mismo efecto que al hacer clic en la
+columna 5).</p>
+</div>
+<div class="section" id="formatos-alternativos">
+<h2>Formatos alternativos<a class="headerlink" href="#formatos-alternativos" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="el-texto-del-historico-de-cambios">
+<h3>El texto del histórico de cambios<a class="headerlink" href="#el-texto-del-historico-de-cambios" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Al final de la página, existe un enlace <em>ChangeLog</em> que le mostrará el
+rango de revisiones tal como se le muestra actualmente en la página,
+pero como texto sin formato, haciendo uso de las convenciones para los
+ficheros de históricos de cambios o ChangeLog.</p>
+</div>
+<div class="section" id="soporte-rss">
+<h3>Soporte RSS<a class="headerlink" href="#soporte-rss" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El histórico de cambios también provee un <em>feed</em> <strong>RSS</strong> que permite
+hacerle seguimiento a los cambios. Para subscribirse a un <em>feed</em>, ya
+sea para un archivo o un directorio, abra el histórico de revisiones en
+el navegador y haga clic en el ícono naranja <em>XML</em> que se encuentra al
+final de la página. Para mayor información del <a class="reference external" href="TracRss.html#tracrss"><em>soporte RSS en Trac</em></a>.</p>
+</div>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea también<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="TracBrowser.html#tracbrowser"><em>Visualizador de código</em></a></li>
+<li><a class="reference external" href="TracChangeSet.html#tracchangeset"><em>Conjunto de cambios en Trac</em></a></li>
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Hitórico de revisiones</a><ul>
+<li><a class="reference external" href="#el-formulario-del-historico-de-revisiones">El formulario del histórico de revisiones</a></li>
+<li><a class="reference external" href="#la-informacion-del-historico-de-revisiones">La información del histórico de revisiones</a></li>
+<li><a class="reference external" href="#inspeccionando-los-cambios-entre-revisiones">Inspeccionando los cambios entre revisiones</a></li>
+<li><a class="reference external" href="#formatos-alternativos">Formatos alternativos</a><ul>
+<li><a class="reference external" href="#el-texto-del-historico-de-cambios">El texto del histórico de cambios</a></li>
+<li><a class="reference external" href="#soporte-rss">Soporte RSS</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#vea-tambien">Vea también</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracRevisionLog.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

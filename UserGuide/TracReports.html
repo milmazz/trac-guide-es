@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reportes en Trac &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="reportes-en-trac">
+<span id="tracreports"></span><h1>Reportes en Trac<a class="headerlink" href="#reportes-en-trac" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El módulo de reportes de Trac provee una simple, pero poderosa
+facilidad para generar reportes que presentan información acerca de
+tickets en la base de datos de Trac.</p>
+<p>En vez de tener un formato propio de definición de reportes, TracReports
+confía en la sentencia <tt class="docutils literal"><span class="pre">SELECT</span></tt> del estándar SQL para la definición de
+reportes personalizados.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">El módulo de reportes ha entrado en fase de desuso en su forma actual puesto que seriamente limita la habilidad para el equipo de desarrollo de Trac para hacer ajustes al esquema bajo la base de datos. Los desarrolladores de Trac creen que <a class="reference external" href="TracQuery.html#tracquery"><em>el módulo de consultas</em></a> es un buen reemplazo que provee mayor flexibilidad y mejor usabilidad. Mientras existan ciertos reportes que no puedan ser manejados todavía por el módulo de consultas, se seguirá mejorando este módulo, hasta que en algún punto el módulo de reportes pueda ser removido completamente. Esto también significa que no habrán mayores mejoras en el módulo de reportes de ahora en adelante.</p>
+</div>
+<p>Usted puede reemplazar completamente el módulo de reportes por el
+módulo de consultas simplemente deshabilitando el primero de ellos en
+<em class="xref">trac.ini</em>:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span class="k">[components]</span>
+<span class="na">trac.ticket.report.*</span> <span class="o">=</span> <span class="s">disabled</span>
+</pre></div>
+</div>
+<p>Esto hará que el módulo de consultas sea el manejador por omisión para
+la sección <em>Ver Tickets</em>. Se le recomienda probar esta configuración
+y reporte a los desarrolladores de Trac que tipo de características en
+los reportes le hace falta o se está perdiendo, si existe alguna.</p>
+<p><strong>En este punto se hace definitivamente necesario reiniciar su servidor
+Web.</strong></p>
+<p>Un reporte consiste en estas partes básicas:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>ID</strong> &#8211; Identificador único (secuencial)</li>
+<li><strong>Título</strong>  &#8211; Título descriptivo</li>
+<li><strong>Descripción</strong>  &#8211; Una breve descripción del reporte, soporta texto WikiFormatting.</li>
+<li><strong>Cuerpo del reporte</strong> &#8211; Lista de resultados desde la consulta del reporte, acorde con el formato de los métodos descritos más abajo.</li>
+<li><strong>Pie</strong> &#8211; Enlace a los formatos alternativos para la descarga de este reporte.</li>
+</ul>
+</blockquote>
+<div class="section" id="cambiando-el-sentido-de-ordenamiento">
+<h2>Cambiando el sentido de ordenamiento<a class="headerlink" href="#cambiando-el-sentido-de-ordenamiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Reportes simples, reportes sin agrupar para ser específicos, puede
+cambiar el sentido de ordenamiento basado en cualquier columna
+simplemente dando clic en la cabecera de una columna en particular.</p>
+<p>Si una cabecera de columna es un hipernelace (roja), haciendo clic
+en ella indica que quiere ordenarla tomándola como referencia. Haciendo
+clic en la misma cabecera de nuevo revertirá el orden.</p>
+</div>
+<div class="section" id="cambiando-la-numeracion-de-los-reportes">
+<h2>Cambiando la numeración de los reportes<a class="headerlink" href="#cambiando-la-numeracion-de-los-reportes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Pueden existir momentos en donde necesite cambiar el ID de un reporte,
+posiblemente para organizar mejor sus reportes. Al presente esto
+requiere un cambio en la base de datos de Trac. La tabla <em>report</em> posee
+el siguiente esquema (como en 0.10):</p>
+<blockquote>
+<ul class="simple">
+<li>id integer PRIMARY KEY</li>
+<li>author text</li>
+<li>title text</li>
+<li>query text</li>
+<li>description text</li>
+</ul>
+</blockquote>
+<p>Cambiando el ID modifica el orden de visualización y el número en la
+lista de <em>Reportes disponibles</em> y en el enlace permanente del reporte.
+Esto se hace ejecutando una sentencia similar a la siguiente:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">update</span> <span class="n">report</span> <span class="k">set</span> <span class="n">id</span><span class="o">=</span><span class="mi">5</span> <span class="k">where</span> <span class="n">id</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Tenga en mente que la integridad debe seguirse manteniendo (p.ej., el
+ID debe ser único, tampoco debe exceder el máximo, puesto que esto es
+manejado por el sistema manejador de base de datos en algún lado).</p>
+</div>
+<div class="section" id="navegando-tickets">
+<h2>Navegando tickets<a class="headerlink" href="#navegando-tickets" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Haciendo clic en uno de los resultados del reporte lo llevará a ese
+ticket. Puede navegar a través de los resultados haciendo clic en los
+enlaces <em>Next ticket</em> o <em>Previous ticket</em> que se encuentran debajo de
+la barra del menú principal, o haciendo clic en el enlace <em>Back to
+report</em> para retornar a la página del reporte.</p>
+<p>Podrá editar de manera segura cualquiera de los tickets y continuar
+navegando a través de los resultados usando los enlaces
+&#8220;Next/Previous/Back to report&#8221; después de guardar los cambios, pero
+cuando retorne al reporte, no existirá un indicio o pista acerca de lo
+que ha cambiado, tal como si estuviese navegando una lista de tickets
+obtenida a partir de una consulta (vea TracQuery#NavigatingTickets). <em>(a partir de 0.11)</em></p>
+</div>
+<div class="section" id="formatos-alternativos-para-descarga">
+<h2>Formatos alternativos para descarga<a class="headerlink" href="#formatos-alternativos-para-descarga" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Aparte de la vista por omisión en HTML, los reportes también pueden
+exportarse a un número determinado de formatos alternativos.
+Al final de la página de reportes, encontrará una lista de los formatos
+de datos disponibles. Haga clic en el enlace deseado para descargar el
+formato alternativo del reporte.</p>
+<div class="section" id="delimitado-por-comas-csv-valores-separados-por-comas">
+<h3>Delimitado por comas - CSV (Valores separados por Comas)<a class="headerlink" href="#delimitado-por-comas-csv-valores-separados-por-comas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Exporta el reporte en texto sin formato, cada fila en su propia línea,
+las columnas están separadas por una coma (<tt class="docutils literal"><span class="pre">,</span></tt>).</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Retornos de carro, FIXME:line feeds, y comas son eliminados de la columna de datos para preservar la estructura del CSV.</p>
+</div>
+</div>
+<div class="section" id="delimitado-por-tabulaciones">
+<h3>Delimitado por tabulaciones<a class="headerlink" href="#delimitado-por-tabulaciones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Similar al de arriba, pero usando tabulaciones (<tt class="docutils literal"><span class="pre">\t</span></tt>) en vez de
+comas.</p>
+</div>
+<div class="section" id="rss-sindicacion-de-contenido-en-xml">
+<h3>RSS - Sindicación de contenido en XML<a class="headerlink" href="#rss-sindicacion-de-contenido-en-xml" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Todos los reportes soportan sindicación usando XML/RSS 2.0. Para
+subscribirse a un feed RSS, haga clic en el ícono color naranja <em>XML</em>
+que se encuentra al final de la página. Vea TracRss para información
+general acerca del soporte RSS en Trac.</p>
+</div>
+</div>
+<div class="section" id="creando-reportes-personalizados">
+<h2>Creando reportes personalizados<a class="headerlink" href="#creando-reportes-personalizados" title="Enlazar permanentemente con este título">¶</a></h2>
+<p><em>La creación de reportes personalizados requiere de un conocimiento
+moderado de SQL.</em></p>
+<p>Un reporte es básicamente una consulta SQL, ejecutada y presentada por
+Trac. Los reportes pueden ser vistos y creados a partir de una
+expresión SQL personalizada directamente desde la interfaz Web.</p>
+<p>FIXME: A report is basically a single named SQL query, executed and presented by
+Trac.  Reports can be viewed and created from a custom SQL expression directly
+in from the web interface.</p>
+<p>Típicamente, un reporte consiste de una expresión <tt class="docutils literal"><span class="pre">SELECT</span></tt> a la tabla
+<em>ticket</em>, usando las columnas disponibles y ordenándolas de la manera
+que desee.</p>
+</div>
+<div class="section" id="columnas-de-ticket">
+<h2>Columnas de ticket<a class="headerlink" href="#columnas-de-ticket" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La tabla <em>ticket</em> tiene las siguientes columnas:</p>
+<blockquote>
+<ul class="simple">
+<li>id</li>
+<li>type</li>
+<li>time</li>
+<li>changetime</li>
+<li>component</li>
+<li>severity</li>
+<li>priority</li>
+<li>owner</li>
+<li>reporter</li>
+<li>cc</li>
+<li>version</li>
+<li>milestone</li>
+<li>status</li>
+<li>resolution</li>
+<li>summary</li>
+<li>description</li>
+<li>keywords</li>
+</ul>
+</blockquote>
+<p>Vea TracTickets para una detallada descripción de los campos de las
+columnas.</p>
+<p><strong>Ejemplo:</strong> <em>todos los tickets activos, ordenados por prioridad y
+tiempo de creación</em></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">id</span> <span class="k">AS</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="n">priority</span><span class="p">,</span> <span class="k">owner</span><span class="p">,</span>
+     <span class="n">time</span> <span class="k">as</span> <span class="n">created</span><span class="p">,</span> <span class="n">summary</span> <span class="k">FROM</span> <span class="n">ticket</span>
+<span class="k">WHERE</span> <span class="n">status</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="s1">&#39;assigned&#39;</span><span class="p">,</span> <span class="s1">&#39;reopened&#39;</span><span class="p">)</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">priority</span><span class="p">,</span> <span class="n">time</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reportes-avanzados-variables-dinamicas">
+<h2>Reportes avanzados: Variables dinámicas<a class="headerlink" href="#reportes-avanzados-variables-dinamicas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para reportes más flexibles, Trac soporta el uso de <em>variables
+dinámicas</em> en las sentencias SQL de los reportes.
+Brevemente, las variables dinámicas son cadenas <em>especiales</em> que son
+reemplazadas por datos personalizados antes de la ejecución de la
+consulta.</p>
+<div class="section" id="usando-variables-en-una-consulta">
+<h3>Usando variables en una consulta<a class="headerlink" href="#usando-variables-en-una-consulta" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La sintaxis para variables dinámicas es simple, cualquier palabra en
+mayúsculas que comience con <tt class="docutils literal"><span class="pre">$</span></tt> es considerada una variable.</p>
+<p>Ejemplo:</p>
+<div class="highlight-sql"><pre>SELECT id AS ticket,summary FROM ticket WHERE priority=$PRIORITY</pre>
+</div>
+<p>Para asignarle un valor a la variable <tt class="docutils literal"><span class="pre">$PRIORITY</span></tt> cuando está viendo
+el reporte, debe definirlo como un argumento en la URL del reporte,
+dejando de lado el <tt class="docutils literal"><span class="pre">$</span></tt>.</p>
+<p>Ejemplo:</p>
+<blockquote>
+<a class="reference external" href="http://trac.edgewall.org/reports/14?PRIORITY=high">http://trac.edgewall.org/reports/14?PRIORITY=high</a></blockquote>
+<p>Para usar múltiples variables, separe cada una de ellas con un <tt class="docutils literal"><span class="pre">&amp;</span></tt>.</p>
+<p>Ejemplo:</p>
+<blockquote>
+<a class="reference external" href="http://trac.edgewall.org/reports/14?PRIORITY=high&amp;SEVERITY=critical">http://trac.edgewall.org/reports/14?PRIORITY=high&amp;SEVERITY=critical</a></blockquote>
+</div>
+<div class="section" id="variables-especiales-constantes">
+<h3>Variables especiales/constantes<a class="headerlink" href="#variables-especiales-constantes" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Existe una variable dinámica <em>mágica</em> que permite crear reportes
+prácticos, su valor automáticamente se establece sin tener que cambiar
+la URL.</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">$USER</span></tt> &#8211; Almacena el <em>nombre de usuario</em> de aquel usuario que ha iniciado sesión.</li>
+</ul>
+</blockquote>
+<p>Ejemplo: <em>Listar todos los tickets asignados a mí</em></p>
+<div class="highlight-sql"><pre>SELECT id AS ticket,summary FROM ticket WHERE owner=$USER</pre>
+</div>
+</div>
+</div>
+<div class="section" id="reportes-avanzados-formato-personalizado">
+<h2>Reportes avanzados: Formato personalizado<a class="headerlink" href="#reportes-avanzados-formato-personalizado" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Trac también es capaz de reportes más avanzados, incluyendo <em>layouts</em>
+personalizados, agrupamiento de resultados y estilos CSS definidos por
+el usuario. Para crear estos reportes, use sentencias SQL
+especializadas para controlar la salida del motor de reportes de Trac.</p>
+</div>
+<div class="section" id="columnas-especiales">
+<h2>Columnas especiales<a class="headerlink" href="#columnas-especiales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para darle formato a los reportes, TracReports busca nombres de
+columnas <em>mágicas</em> en los resultados de las consultas. Estos nombres
+<em>mágicos</em> son procesados y afectan el <em>layout</em> y el estilo del reporte
+final.</p>
+<div class="section" id="formato-automatico-de-columnas">
+<h3>Formato automático de columnas<a class="headerlink" href="#formato-automatico-de-columnas" title="Enlazar permanentemente con este título">¶</a></h3>
+<blockquote>
+<ul class="simple">
+<li><strong>ticket</strong> &#8211; Número ID del ticket. Se convierte en un hiperenlace hacia ese ticket.</li>
+<li><strong>created, modified, date, time</strong> &#8211; Da formato a las celdas como una fecha y/u hora.</li>
+<li><strong>description</strong> &#8211; Campo de descripción del ticket, analizado a través del motor Wiki.</li>
+</ul>
+</blockquote>
+<p><strong>Ejemplo:</strong></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">id</span> <span class="k">as</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">created</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">summary</span> <span class="k">FROM</span> <span class="n">ticket</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="formato-personalizado-de-columnas">
+<h3>Formato personalizado de columnas<a class="headerlink" href="#formato-personalizado-de-columnas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Aquellas columnas cuyos nombres comienzan y finalizan con dos
+caracteres de subrayado (Ejemplo: <tt class="docutils literal"><span class="pre">`__color__`</span></tt>) son asumidas como
+<em>pistas de formato</em>, afectando la apariencia de la fila.</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">`__group__`</span></tt> &#8211; Agrupa los resultados en base a valores en esta columna. Cada grupo tendrá su propia cabecera y tabla.</li>
+<li><tt class="docutils literal"><span class="pre">`__color__`</span></tt> &#8211; Debe ser un valor numérico en el rango desde 1 a 5 para seleccionar un color de fila predefinido. Típicamente usado para colorear las filas por prioridad del <em>issue</em>.</li>
+</ul>
+</blockquote>
+<p>FIXME: Convertir a formato rst.
+... &lt;div style=&#8221;margin-left:7.5em&#8221;&gt;Defaults:
+... &lt;span style=&#8221;border: none; color: #333; background: transparent;  font-size: 85%; background: #fdc; border-color: #e88; color: #a22&#8221;&gt;Color 1&lt;/span&gt;
+... &lt;span style=&#8221;border: none; color: #333; background: transparent;  font-size: 85%; background: #ffb; border-color: #eea; color: #880&#8221;&gt;Color 2&lt;/span&gt;
+... &lt;span style=&#8221;border: none; color: #333; background: transparent;  font-size: 85%; background: #fbfbfb; border-color: #ddd; color: #444&#8221;&gt;Color 3&lt;/span&gt;
+... &lt;span style=&#8221;border: none; color: #333; background: transparent; font-size: 85%; background: #e7ffff; border-color: #cee; color: #099&#8221;&gt;Color 4&lt;/span&gt;
+... &lt;span style=&#8221;border: none; color: #333; background: transparent;  font-size: 85%; background: #e7eeff; border-color: #cde; color: #469&#8221;&gt;Color 5&lt;/span&gt;</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">`__style__`</span></tt> &#8211; Una expresión de estilo CSS personalizado a ser usado en la fila actual.</li>
+</ul>
+</blockquote>
+<p><strong>Ejemplo:</strong> <em>Lista de tickets activos, agrupados por hito, coloreados por prioridad</em></p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">value</span> <span class="k">AS</span> <span class="n">__color__</span><span class="p">,</span>
+   <span class="n">t</span><span class="p">.</span><span class="n">milestone</span> <span class="k">AS</span> <span class="n">__group__</span><span class="p">,</span>
+   <span class="p">(</span><span class="k">CASE</span> <span class="k">owner</span> <span class="k">WHEN</span> <span class="s1">&#39;daniel&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;font-weight: bold; background: red;&#39;</span> <span class="k">ELSE</span> <span class="s1">&#39;&#39;</span> <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="n">__style__</span><span class="p">,</span>
+     <span class="n">t</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">summary</span>
+<span class="k">FROM</span> <span class="n">ticket</span> <span class="n">t</span><span class="p">,</span><span class="n">enum</span> <span class="n">p</span>
+<span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">status</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="s1">&#39;assigned&#39;</span><span class="p">,</span> <span class="s1">&#39;reopened&#39;</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">priority</span> <span class="k">AND</span> <span class="n">p</span><span class="p">.</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;priority&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">t</span><span class="p">.</span><span class="n">milestone</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Una unión o <em>join</em> de tablas es usado para fusionar las prioridades del <em>ticket</em> con su representación numérica desde la tabla <em>enum</em>.</p>
+</div>
+</div>
+<div class="section" id="cambiando-el-layout-de-las-filas-en-los-reportes">
+<h3>Cambiando el <em>layout</em> de las filas en los reportes<a class="headerlink" href="#cambiando-el-layout-de-las-filas-en-los-reportes" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Por omisión, todas las columnas en cada fila son mostradas en una simple
+fila en el reporte en formato HTML, posiblemente formateado acorde a las
+descripciones de arriba. Sin embargo, también es posible crear entradas
+multilínea en los reportes.</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">`column_`</span></tt> &#8211; <em>Rompe la fila después de esto</em>. Al agregar un caracter de subrayado (<tt class="docutils literal"><span class="pre">_</span></tt>) al nombre de la columna, las columnas restantes continuarán en una segunda línea.</li>
+<li><tt class="docutils literal"><span class="pre">`_column_`</span></tt> &#8211; <em>Fila completa</em>. Al agregar un caracter de subrayado (<tt class="docutils literal"><span class="pre">_</span></tt>) tanto al iniciao como al final del nombre de una columna, los datos serán mostrados en una fila separada.</li>
+<li><tt class="docutils literal"><span class="pre">`_column`</span></tt>  &#8211;  <em>Ocultar datos</em>. Al colocar un caracter de subrayado (<tt class="docutils literal"><span class="pre">_</span></tt>) como prefijo en el nombre de una columna se le instruye a Trac para que oculte el contenido de la salida HTML. Esto es útil para información que será visible solo si es descargada en otros formatos (tal como CSV o RSS/XML).</li>
+</ul>
+</blockquote>
+<p><strong>Ejemplo:</strong> <em>Lista de tickets activos, agrupados por hito, coloreados por prioridad, con descripción y un *layout</em> de múltiples líneas*</p>
+<div class="highlight-sql"><div class="highlight"><pre><span class="k">SELECT</span> <span class="n">p</span><span class="p">.</span><span class="n">value</span> <span class="k">AS</span> <span class="n">__color__</span><span class="p">,</span>
+     <span class="n">t</span><span class="p">.</span><span class="n">milestone</span> <span class="k">AS</span> <span class="n">__group__</span><span class="p">,</span>
+     <span class="p">(</span><span class="k">CASE</span> <span class="k">owner</span>
+        <span class="k">WHEN</span> <span class="s1">&#39;daniel&#39;</span> <span class="k">THEN</span> <span class="s1">&#39;font-weight: bold; background: red;&#39;</span>
+        <span class="k">ELSE</span> <span class="s1">&#39;&#39;</span> <span class="k">END</span><span class="p">)</span> <span class="k">AS</span> <span class="n">__style__</span><span class="p">,</span>
+     <span class="n">t</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">summary</span> <span class="k">AS</span> <span class="n">summary_</span><span class="p">,</span>             <span class="c1">-- ## Rompa línea acá</span>
+     <span class="n">component</span><span class="p">,</span><span class="k">version</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="n">milestone</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="k">owner</span><span class="p">,</span>
+     <span class="n">time</span> <span class="k">AS</span> <span class="n">created</span><span class="p">,</span> <span class="n">changetime</span> <span class="k">AS</span> <span class="n">modified</span><span class="p">,</span>         <span class="c1">-- ## Fecha con formato</span>
+     <span class="n">description</span> <span class="k">AS</span> <span class="n">_description_</span><span class="p">,</span>                    <span class="c1">-- ## Use una fila completa</span>
+     <span class="n">changetime</span> <span class="k">AS</span> <span class="n">_changetime</span><span class="p">,</span> <span class="n">reporter</span> <span class="k">AS</span> <span class="n">_reporter</span> <span class="c1">-- ## Oculte de la salida HTML</span>
+<span class="k">FROM</span> <span class="n">ticket</span> <span class="n">t</span><span class="p">,</span><span class="n">enum</span> <span class="n">p</span>
+<span class="k">WHERE</span> <span class="n">t</span><span class="p">.</span><span class="n">status</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;new&#39;</span><span class="p">,</span> <span class="s1">&#39;assigned&#39;</span><span class="p">,</span> <span class="s1">&#39;reopened&#39;</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">t</span><span class="p">.</span><span class="n">priority</span> <span class="k">AND</span> <span class="n">p</span><span class="p">.</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;priority&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">t</span><span class="p">.</span><span class="n">milestone</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">time</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reportando-sobre-campos-personalizados">
+<h3>Reportando sobre campos personalizados<a class="headerlink" href="#reportando-sobre-campos-personalizados" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Si ha agregado campos personalizados a sus tickets (una característica
+presente desde la v0.8, vea TracTicketsCustomFields), puede escribir
+consultas SQL que agrupe dichos campos. Necesitará hacer una unión o
+<em>join</em> con la tabla <tt class="docutils literal"><span class="pre">ticket_custom</span></tt>, pero esto no es especialmente
+sencillo.</p>
+<p>Si usted tiene tickets en la base de datos <em>antes</em> de haber declarado
+los campos adicionales en el trac.ini, no existirán datos asociados en
+la tabla <tt class="docutils literal"><span class="pre">ticket_custom</span></tt>. Para trabajar alrededor de esto, utilice
+la clausula SQL <tt class="docutils literal"><span class="pre">LEFT</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></tt>. Vea TracIniReportCustomFieldSample
+para algunos ejemplos.</p>
+<p><strong>Note que necesita establecer los permisos necesarios para ver los
+botones para añadir o editar reportes.</strong></p>
+</div>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea también<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="TracTickets.html#tractickets"><em>Tickets de Trac</em></a></li>
+<li><a class="reference external" href="TracQuery.html#tracquery"><em>Consultas en Trac</em></a></li>
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a></li>
+<li><a class="reference external" href="http://www.sqlite.org/lang_expr.html">Query Language Understood by SQLite</a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Reportes en Trac</a><ul>
+<li><a class="reference external" href="#cambiando-el-sentido-de-ordenamiento">Cambiando el sentido de ordenamiento</a></li>
+<li><a class="reference external" href="#cambiando-la-numeracion-de-los-reportes">Cambiando la numeración de los reportes</a></li>
+<li><a class="reference external" href="#navegando-tickets">Navegando tickets</a></li>
+<li><a class="reference external" href="#formatos-alternativos-para-descarga">Formatos alternativos para descarga</a><ul>
+<li><a class="reference external" href="#delimitado-por-comas-csv-valores-separados-por-comas">Delimitado por comas - CSV (Valores separados por Comas)</a></li>
+<li><a class="reference external" href="#delimitado-por-tabulaciones">Delimitado por tabulaciones</a></li>
+<li><a class="reference external" href="#rss-sindicacion-de-contenido-en-xml">RSS - Sindicación de contenido en XML</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#creando-reportes-personalizados">Creando reportes personalizados</a></li>
+<li><a class="reference external" href="#columnas-de-ticket">Columnas de ticket</a></li>
+<li><a class="reference external" href="#reportes-avanzados-variables-dinamicas">Reportes avanzados: Variables dinámicas</a><ul>
+<li><a class="reference external" href="#usando-variables-en-una-consulta">Usando variables en una consulta</a></li>
+<li><a class="reference external" href="#variables-especiales-constantes">Variables especiales/constantes</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#reportes-avanzados-formato-personalizado">Reportes avanzados: Formato personalizado</a></li>
+<li><a class="reference external" href="#columnas-especiales">Columnas especiales</a><ul>
+<li><a class="reference external" href="#formato-automatico-de-columnas">Formato automático de columnas</a></li>
+<li><a class="reference external" href="#formato-personalizado-de-columnas">Formato personalizado de columnas</a></li>
+<li><a class="reference external" href="#cambiando-el-layout-de-las-filas-en-los-reportes">Cambiando el <em>layout</em> de las filas en los reportes</a></li>
+<li><a class="reference external" href="#reportando-sobre-campos-personalizados">Reportando sobre campos personalizados</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#vea-tambien">Vea también</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracReports.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

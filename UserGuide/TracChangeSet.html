@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Manejo del conjunto de cambios &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="manejo-del-conjunto-de-cambios">
+<span id="tracchangeset"></span><h1>Manejo del conjunto de cambios<a class="headerlink" href="#manejo-del-conjunto-de-cambios" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Trac incorpora en su sistema una funcionalidad para visualizar
+diferencias o cambios en los ficheros.</p>
+<p>Existen diferentes tipos de <em>conjunto de cambios</em>.
+Algunos pueden corresponder a revisiones hechas en los repositorios,
+otros pueden agregar cambios hechos en varias revisiones,
+pero al final, cualquier tipo de diferencias pueden ser mostradas.</p>
+<p>La vista del conjunto de cambios consiste en dos partes, la <em>cabecera</em>
+y la <em>vista de diferencias</em>.</p>
+<div class="section" id="cabecera-del-conjunto-de-cambios">
+<h2>Cabecera del conjunto de cambios<a class="headerlink" href="#cabecera-del-conjunto-de-cambios" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La cabecera muestra un resumen de todo el conjunto de cambios.
+Acá podrá encontrar información tal como:</p>
+<blockquote>
+<ul class="simple">
+<li>Estampas de tiempo &#8211; Cuando fue enviado el conjunto de cambios</li>
+<li>Autor &#8211; Quien envio el conjunto de cambios</li>
+<li>Mensaje &#8211; Una breve descripción hecha por el autor (el registro de mensaje de envío)</li>
+<li>Ficheros &#8211; La lista de ficheros afectados por el conjunto de cambios.</li>
+</ul>
+</blockquote>
+<p>Si más de una revisión está involucrada en el conjunto de cambios que está
+siendo visualizado. Los campos de <em>estampa de tiempo</em>, <em>autor</em> y el <em>mensaje</em>
+no serán mostrados.</p>
+<p>Al lado de cada fichero listado, encontrará un rectángulo coloreado. El color
+indica cómo el fichero fue afectado por el conjunto de cambios.</p>
+<blockquote>
+<ul class="simple">
+<li>Verde: Agregado</li>
+<li>Rojo: Removido</li>
+<li>Amarillo: Modificado</li>
+<li>Azul: Copiado</li>
+<li>Gris: Movido</li>
+</ul>
+</blockquote>
+<p>La leyenda de colores se localiza debajo de la cabecera como recordatorio.</p>
+</div>
+<div class="section" id="vista-de-diferencias">
+<h2>Vista de diferencias<a class="headerlink" href="#vista-de-diferencias" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Debajo de la cabecera se encuentra la parte principal del conjunto de cambios,
+la vista de diferencias. Cada fichero es mostrado en una sección separada, cada una de
+las cuales contendrá solo aquellas regiones del fichero que han sido afectadas por el
+conjunto de cambios. Existen dos estilos diferentes para mostrar las diferencias: <em>En
+línea</em> o <em>lado a lado</em>, puede cambiar entre estilos al usar el formulario de preferencias.</p>
+<blockquote>
+<ul class="simple">
+<li>El estilo <em>en línea</em> muestra las regiones de cambios del fichero una debajo de la otra. Una región removida del fichero es coloreada en rojo, una región agregada será coloreada en verde. Si una región ha sido modificada, la versión anterior se mostrará encima de la nueva versión. Los números de línea ubicados a la izquierda indican la posición exacta del cambio tanto en la versión anterior como en la nueva versión del fichero.</li>
+</ul>
+</blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<blockquote>
+<strong>FIXME:</strong> The &#8216;&#8217;inline&#8217;&#8217; style shows the changed regions of a file &#8216;&#8217;underneath&#8217;&#8217; each other. A region removed from the file will be colored red, an added region will be colored green. If a region was modified, the old version is displayed above the new version. Line numbers on the left side indicate the exact position of the change in both the old and the new version of the file.</blockquote>
+<ul class="last simple">
+<li>El estilo <em>lado a lado</em> muestra la versión anterior en la parte izquierda y la nueva versión en la parte derecha (esto típicamente requiere mayor anchura que la vista en línea). Las regiones agregadas y removidas serán coloreadas de igual manera como el estilo en línea (verde y rojo, respectivamente), pero las regiones modificadas tendrán un fondo de color amarillo.</li>
+</ul>
+</div>
+<p>Adicionalmente, varias opciones avanzadas están disponibles en el
+formulario de preferencias para ajustar la visualización de las
+diferencias:</p>
+<blockquote>
+<ul class="simple">
+<li>Puede establecer cuantas líneas son mostradas tanto antes como después de cada cambio (si el valor <em>all</em> es usado, entonces el contenido completo del fichero será mostrado)</li>
+<li>Usted puede activar o desactivar la visualización de líneas en blanco, cambios de casos y cambios en los espacios en blanco, esto le permitirá encontrar los cambios funcionales rápidamente.</li>
+</ul>
+</blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last"><strong>FIXME:</strong> You can toggle whether blank lines, &#8216;&#8217;case changes&#8217;&#8217; and white space changes are ignored, thereby letting you find the functional changes more quickly</p>
+</div>
+</div>
+<div class="section" id="diferentes-vias-para-obtener-las-diferencias">
+<h2>Diferentes vías para obtener las diferencias<a class="headerlink" href="#diferentes-vias-para-obtener-las-diferencias" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="examinando-el-conjunto-de-cambios">
+<h3>Examinando el conjunto de cambios<a class="headerlink" href="#examinando-el-conjunto-de-cambios" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Cuando se encuentra viendo un envío al repositorio, como
+cuando sigue un [wiki:TracLinks enlace] a un conjunto
+de cambios o un evento en la [wiki:TracTimeline línea de tiempo],
+Trac mostrará los cambios exactos hechos por el envío al repositorio.</p>
+<p>También existen enlaces de navegación hacia el <em>Conjunto de cambios previo</em> y
+<em>Siguiente conjunto de cambios</em>.</p>
+</div>
+<div class="section" id="examinando-diferencias-entre-revisiones">
+<h3>Examinando diferencias entre revisiones<a class="headerlink" href="#examinando-diferencias-entre-revisiones" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Regularmente deseará ver los cambios hechos a un
+fichero o a un directorio a través de múltiples revisiones.
+La manera más fácil de obtener esto es desde el TracRevisionLog,
+donde podrá seleccionar la <em>vieja</em> y la <em>nueva</em> revisión del fichero
+o directorio, posteriormente debe dar clic en el botón <em>Ver Cambios</em>.</p>
+</div>
+<div class="section" id="examinando-diferencias-entre-ramas">
+<h3>Examinando diferencias entre ramas<a class="headerlink" href="#examinando-diferencias-entre-ramas" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>Una de las características principales de los sistemas de control
+de versiones es la posibilidad de trabajar simultáneamente en
+diferencias <em>líneas de desarrollo</em>, comúnmente denominadas <em>ramas</em>.
+Trac permite que examine las diferencias exactas entre estas ramas.</p>
+<p>Usando el botón <strong>Ver cambios...</strong> en el TracBrowser permitirá ingresar
+el par de revisiones o rutas (path) en los campos <em>From:</em> y <em>To:</em>. El
+conjunto de cambios resultantes consisten en los cambios que deben ser
+aplicados al contenido ubicado en <strong>From:</strong> para obtener el contenido de <strong>To:</strong>.</p>
+<p>Si lo considera conveniente, es posible invertir los roles <em>viejo</em> y <em>nuevo</em>
+en el par de revisiones o rutas (path) al hacer clic en el enlace <em>Reverse Diff</em>
+en la página del conjunto de cambios.</p>
+</div>
+<div class="section" id="revisando-el-ultimo-cambio">
+<h3>Revisando el último cambio<a class="headerlink" href="#revisando-el-ultimo-cambio" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La última posibilidad de examinar cambios es usando el enlace <em>Last Change</em>
+ubicado en el TracBrowser.</p>
+<p>El enlace <em>Last Change</em> lo llevará al último cambio que fue realizado en esa ruta
+o <em>path</em>. A partir de acá, podrá usar los enlaces <em>Previous Change</em> y <em>Next Change</em>
+para hacerle seguimiento a la historia de cambios del fichero o directorio.</p>
+</div>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea también<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a></li>
+<li><a class="reference external" href="TracBrowser.html#tracbrowser"><em>Visualizador de código</em></a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Manejo del conjunto de cambios</a><ul>
+<li><a class="reference external" href="#cabecera-del-conjunto-de-cambios">Cabecera del conjunto de cambios</a></li>
+<li><a class="reference external" href="#vista-de-diferencias">Vista de diferencias</a></li>
+<li><a class="reference external" href="#diferentes-vias-para-obtener-las-diferencias">Diferentes vías para obtener las diferencias</a><ul>
+<li><a class="reference external" href="#examinando-el-conjunto-de-cambios">Examinando el conjunto de cambios</a></li>
+<li><a class="reference external" href="#examinando-diferencias-entre-revisiones">Examinando diferencias entre revisiones</a></li>
+<li><a class="reference external" href="#examinando-diferencias-entre-ramas">Examinando diferencias entre ramas</a></li>
+<li><a class="reference external" href="#revisando-el-ultimo-cambio">Revisando el último cambio</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#vea-tambien">Vea también</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracChangeSet.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

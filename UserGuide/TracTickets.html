@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>El sistema de tickets de Trac &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="el-sistema-de-tickets-de-trac">
+<span id="tractickets"></span><h1>El sistema de tickets de Trac<a class="headerlink" href="#el-sistema-de-tickets-de-trac" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>La base de datos de tickets de Trac provee un simple pero efectivo
+sistema de seguimiento de <em>issues</em> y errores de programación dentro de
+un proyecto.</p>
+<p>Como elemento central de Trac para el manejo del proyecto, los tickets
+son usados para <em>tareas del proyecto</em>, <em>solicitud de características</em>,
+<em>reporte de errores</em> y <em>issues de soporte del software</em>.</p>
+<p>Al igual que el <a class="reference external" href="TracWiki.html#tracwiki"><em>Sistema Wiki</em></a>, este subsistema ha sido
+diseñado con el propósito de permitir que la contribución y la
+participación de los usuarios sea tan sencilla como sea posible.
+Debería ser muy sencillo reportar errores, realizar preguntas y sugerir
+mejoras en el sofware.</p>
+<p>Un <em>issue</em> es asignado a la persona quien debería resolverlo o
+reasignar el ticket a alguien más.
+Todos los tickets pueden editarse, anotarse, asignarse, darle prioridad
+y discutirlos en cualquier momento.</p>
+<div class="section" id="campos-de-los-tickets">
+<h2>Campos de los tickets<a class="headerlink" href="#campos-de-los-tickets" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Un ticket debe contener los siguientes atributos de información:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>Reporter</strong> - El autor del ticket.</li>
+<li><strong>Type</strong> - La naturaleza del ticket (por ejemplo, defecto o solicitud de mejora)</li>
+<li><strong>Component</strong> - El módulo del proyecto o el subsistema que a este ticket le concierne.</li>
+<li><strong>Version</strong> - Versión del proyecto a la que este ticket pertenece.</li>
+<li><strong>Keywords</strong> - Palabras claves con las que el ticket es etiquetado. Útil para búsquedas y generación de reportes.</li>
+<li><strong>Priority</strong> - La importancia de este <em>issue</em>, desde el rango <em>trivial</em> a <em>bloqueante</em>.</li>
+<li><strong>Hito</strong> - Cuando este <em>issue</em> debería ser resuelto como máximo.</li>
+<li><strong>Assigned to/Owner</strong> - Personal que funge de principal responsable para el manejo/resolución de este <em>issue</em>.</li>
+<li><strong>Cc</strong> - Una lista separada por comas de otros usuarios o direcciones de correo electrónico a notificar. <em>Note que esto no implica responsabilidad o cualquier otra política</em>.</li>
+<li><strong>Resolution</strong> - Razón por la cual el ticket fue cerrado: <tt class="docutils literal"><span class="pre">fixed</span></tt>, <tt class="docutils literal"><span class="pre">invalid</span></tt>, <tt class="docutils literal"><span class="pre">wontfix</span></tt>, <tt class="docutils literal"><span class="pre">duplicate</span></tt>, <tt class="docutils literal"><span class="pre">worksforme</span></tt>.</li>
+<li><strong>Status</strong> - ¿Cual es el estado actual? Uno de <tt class="docutils literal"><span class="pre">new</span></tt>, <tt class="docutils literal"><span class="pre">assigned</span></tt>, <tt class="docutils literal"><span class="pre">closed</span></tt>, <tt class="docutils literal"><span class="pre">reopened</span></tt>.</li>
+<li><strong>Summary</strong> - Una breve descripción que indica de manera concisa el problema o <em>issue</em>.</li>
+<li><strong>Description</strong> - El cuerpo del ticket. Una buena descripción debe ser específica, descriptiva e ir al punto principal.</li>
+</ul>
+</blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Versiones de Trac previas a la 0.9 no contaban con el campo <em>type</em>, en vez de ello se proveía un campo <em>severity</em> y diferentes valores para el campo <em>priority</em>. Este cambio fue hecho para simplificar el modelo de los ticket removiendo la no muy clara distinción entre <em>priority</em> y <em>severity</em>. Sin embargo, el viejo modelo todavía está disponible si lo prefiere: Simplemente agregue/modifique los valores por omisión de <em>priority</em> y <em>severity</em>, opcionalmente oculte el campo <em>type</em> al remover todos sus posibles valores a través del comando <em class="xref">trac-admin</em>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Los campos <em class="xref">type</em>, <em class="xref">component</em>, version, priority y severity pueden ser manejados con <em class="xref">trac-admin</em> o con el complemento WebAdmin.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>La descripción de los valores por omisión del campo <em>priority</em> puede encontrarla en <em class="xref"></em></p>
+<p class="last">FIXME: Description of the builtin &#8216;&#8217;priority&#8217;&#8217; values is available at [wiki:TicketTypes#Whyistheseverityfieldgone]</p>
+</div>
+</div>
+<div class="section" id="cambiando-y-comentando-tickets">
+<h2>Cambiando y comentando tickets<a class="headerlink" href="#cambiando-y-comentando-tickets" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Una vez que un ticket ha ingresado al sistema Trac, en cualquier
+momento puede cambiar la información al hacer una <strong>anotación</strong> sobre
+el reporte. Esto significa que los cambios y los comentarios al ticket
+son registrados como parte del ticket mismo.</p>
+<p>Cuando ve un ticket, la historia de cambios aparecerá debajo del área
+principal del ticket.</p>
+<p><em>En el proyecto de Trac, se utilizan los comentarios para discutir los
+**issues*</em> y tareas. Esto hace entender de manera más fácil la motivación
+de la elección detrás del diseño o la implementación, cuando se retorna
+a él posteriormente.*</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Una importante característica es la posibilidad de usar <em class="xref">enlaces</em> y el <em class="xref">formato Wiki</em> en la descripción y los comentarios de los tickets. Utilice los <em class="xref">enlaces de Trac</em> para referirse a otros <em>issues</em>, conjuntos de cambios o ficheros para hacer más específico su ticket y más fácil de comprender.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Vea <em class="xref">Notificaciones en Trac</em> para conocer como configurar las notificaciones vía correo electrónico acerca de los cambios en los tickets.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Vea <em class="xref">el flujo de Trac</em> para información acerca de los estados de transiciones (ciclo de vida del ticket), y como puede personalizar dicho flujo de trabajo o <em>workflow</em>.</p>
+</div>
+</div>
+<div class="section" id="valores-por-defecto-para-campos-de-listas-desplegables">
+<h2>Valores por defecto para campos de listas desplegables<a class="headerlink" href="#valores-por-defecto-para-campos-de-listas-desplegables" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La opción seleccionada por omisión para varios campos de listas
+desplegables pueden ser establecidos en el fichero
+<em class="xref">trac.ini</em>, en la sección <tt class="docutils literal"><span class="pre">[ticket]</span></tt>:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">default_component</span></tt>: Nombre del componente seleccionado por omisión</li>
+<li><tt class="docutils literal"><span class="pre">default_milestone</span></tt>: Nombre del hito por omisión</li>
+<li><tt class="docutils literal"><span class="pre">default_priority</span></tt>: Valor por omisión de la prioridad</li>
+<li><tt class="docutils literal"><span class="pre">default_severity</span></tt>: Valor por omisión de la severidad</li>
+<li><tt class="docutils literal"><span class="pre">default_type</span></tt>: Tipo por omisión del ticket</li>
+<li><tt class="docutils literal"><span class="pre">default_version</span></tt>: Nombre de la versión por omisión</li>
+</ul>
+</blockquote>
+<p>Si cualquiera de estas opciones es omitida, el valor por omisión puede
+ser el primero en la lista, o un valor vacío, dependiendo si es
+requerido que el campo esté establecido.</p>
+</div>
+<div class="section" id="ocultando-campos-y-agregando-campos-personalizados">
+<h2>Ocultando campos y agregando campos personalizados<a class="headerlink" href="#ocultando-campos-y-agregando-campos-personalizados" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Muchos de los campos por omisión de los tickets pueden ser ocultados
+desde la interfaz web simplemente removiendo todos los posibles valores
+a través de <em class="xref">trac-admin</em>. Esto por supuesto aplica
+solamente en campos con listas desplegables, como <em>type</em>, <em>priority</em>,
+<em>severity</em>, <em>component</em>, <em>version</em> y <em>milestone</em>.</p>
+<p>Trac también permite agregar campos personalizados a los tickets. Vea
+<em class="xref">Campos personalizados en tickets</em> para
+mayor información al respecto.</p>
+</div>
+<div class="section" id="campo-assign-to-como-lista-desplegable">
+<h2>Campo <em>Assign-to</em> como lista desplegable<a class="headerlink" href="#campo-assign-to-como-lista-desplegable" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Si la lista de los posibles responsables de los tickets es finita,
+puede cambiar el campo de los tickets <em>assign-to</em> de entrada de texto
+a una lista desplegable. Esto lo puede hacer al establecer la opción
+<tt class="docutils literal"><span class="pre">restrict_owner</span></tt> en la sección <tt class="docutils literal"><span class="pre">[ticket]</span></tt> en el fichero
+<em class="xref">trac.ini</em> a <tt class="docutils literal"><span class="pre">true</span></tt>. En ese caso, Trac usará la lista de
+todos los usuarios que han accedido al proyecto para generar el campo
+como lista desplegable.</p>
+<p>Para aparecer en la lista desplegable, el usuario necesita estar
+registrado en el proyecto, por ejemplo, una sesión de usuario debe
+existir en la base de datos. Tal entrada es automáticamente creada en
+la base de datos la primera vez que el usuario envía un cambio al
+proyecto, por ejemplo cuando está editando los detalles del usuario en
+la página de <em>Settings</em>, o simplemente al autenticarse si el usuario
+posee una cuenta. Además, el usuario debe poseer el
+<em class="xref">permiso</em> <tt class="docutils literal"><span class="pre">TICKET_MODIFY</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Vea <a class="reference external" href="http://pacopablo.com/wiki/pacopablo/blog/set-assign-to-drop-down">Populating Assign To Drop Down</a> para conocer como agregar entradas de usuarios a nivel de base de datos.</p>
+</div>
+</div>
+<div class="section" id="valores-preestablecidos-para-nuevos-tickets">
+<h2>Valores preestablecidos para nuevos tickets<a class="headerlink" href="#valores-preestablecidos-para-nuevos-tickets" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para crear un enlace al formulario de nuevo ticket con valores
+predefinidos, necesita usar la URL <tt class="docutils literal"><span class="pre">/newticket?</span></tt> con
+<tt class="docutils literal"><span class="pre">variable=valor</span></tt> separados por <tt class="docutils literal"><span class="pre">&amp;</span></tt></p>
+<p>Las posibles variables son:</p>
+<blockquote>
+<ul class="simple">
+<li><strong>type</strong> - Lista desplegable de tipo</li>
+<li><strong>reporter</strong> - Nombre o dirección de correo electrónico del autor del ticket</li>
+<li><strong>summary</strong> - Línea de sumario del ticket</li>
+<li><strong>description</strong> - Descripción larga del ticket</li>
+<li><strong>component</strong> - Lista desplegable de componente</li>
+<li><strong>version</strong> - Lista desplegable de versión</li>
+<li><strong>severity</strong> - Lista desplegable de severidad</li>
+<li><strong>keywords</strong> - Palabras claves</li>
+<li><strong>priority</strong> - Lista desplegable de prioridad</li>
+<li><strong>milestone</strong> - Lista desplegable de hitos</li>
+<li><strong>owner</strong> - Persona responsable por el ticket</li>
+<li><strong>cc</strong> - Lista de direcciones de correo electrónico o usuarios para notificar acerca de los cambios en el ticket</li>
+</ul>
+</blockquote>
+<p><strong>Ejemplo:</strong> <tt class="docutils literal"><span class="pre">/newticket?summary=Compile%20Error&amp;version=1.0&amp;component=gui</span></tt></p>
+<p>Vea también:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía Trac</em></a></li>
+<li><a class="reference external" href="TracWiki.html#tracwiki"><em>Wiki de Trac</em></a></li>
+<li><em class="xref">Campos personalizados en los tickets de Trac</em></li>
+<li><em class="xref">Notificaciones en Trac</em></li>
+<li><a class="reference external" href="TracReports.html#tracreports"><em>Reportes en Trac</em></a></li>
+<li><a class="reference external" href="TracQuery.html#tracquery"><em>Consultas en Trac</em></a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">El sistema de tickets de Trac</a><ul>
+<li><a class="reference external" href="#campos-de-los-tickets">Campos de los tickets</a></li>
+<li><a class="reference external" href="#cambiando-y-comentando-tickets">Cambiando y comentando tickets</a></li>
+<li><a class="reference external" href="#valores-por-defecto-para-campos-de-listas-desplegables">Valores por defecto para campos de listas desplegables</a></li>
+<li><a class="reference external" href="#ocultando-campos-y-agregando-campos-personalizados">Ocultando campos y agregando campos personalizados</a></li>
+<li><a class="reference external" href="#campo-assign-to-como-lista-desplegable">Campo <em>Assign-to</em> como lista desplegable</a></li>
+<li><a class="reference external" href="#valores-preestablecidos-para-nuevos-tickets">Valores preestablecidos para nuevos tickets</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracTickets.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ejecutando consultas personalizadas en el sistema de Tickets &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ejecutando-consultas-personalizadas-en-el-sistema-de-tickets">
+<span id="tracquery"></span><h1>Ejecutando consultas personalizadas en el sistema de Tickets<a class="headerlink" href="#ejecutando-consultas-personalizadas-en-el-sistema-de-tickets" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En adición a los <a class="reference external" href="TracReports.html#tracreports"><em>reportes</em></a>, Trac provee soporte para <em>consultas personalizadas sobre tickets</em>, usadas para desplegar la lista de tickets que cumplen con el conjunto de criterios especificados.</p>
+<p>Para configurar y ejecutar las consultas personalizadas, vaya al módulo <em>Ver tickets</em> que se encuentra en la barra principal de navegación, seguidamente seleccione el enlace <em>Consulta Personalizada</em>.</p>
+<div class="section" id="filtros">
+<h2>Filtros<a class="headerlink" href="#filtros" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando usted vaya por primera vez a la página de consultas los filtros por omisión mostrarán todos los tickets abiertos, o si usted ya ha iniciado sesión en el sistema se le mostrarán los tickets abiertos que tiene asignados. Los filtros actuales pueden ser removidos al hacer click en el boton que se ubica a la derecha y que posee el signo negativo como etiqueta. Nuevos filtros pueden ser añadidos desde la lista desplegable que se ubica al fondo a la derecha de la caja de filtros. Los filtros que posean ya sea texto o un listado de opciones pueden ser agregados en múltiples ocasiones para aumentar el conjunto de criterios del tipo <tt class="docutils literal"><span class="pre">or</span></tt>.</p>
+<p>Usted puede usar los campos que se encuentran seguidos de la caja de filtros para agrupar los resultados en base a un campo, o mostrar la descripción completa para cada ticket.</p>
+<p>Una vez que haya editado los filtros haga click en el botón <em>Actualizar</em> para refrescar los resultados.</p>
+</div>
+<div class="section" id="navegando-tickets">
+<h2>Navegando tickets<a class="headerlink" href="#navegando-tickets" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Haciendo click en uno de los resultados de la consulta lo llevará a ese ticket. Usted puede navegar a través de los resultados al hacer click en los enlaces <em>Ticket siguiente</em> o <em>Ticket previo</em> que se encuentran seguidamente debajo de la barra de navegación principal, o hacer click en el enlace <em>Regresar a consulta</em> para retornar a la página de consultas personalizadas.</p>
+<p>Usted puede de manera segura editar cualquiera de los tickets y continuar navegando a través de los resultados obtenidos usando la serie de enlaces <em>Ticket siguiente/previo</em> o <em>Regresar a consulta</em> después de guardar los cambios. Si usted retorna a la página de consulta <strong>cualquier ticket que haya sido editado</strong> será mostrado en texto itálico. Si uno de los tickets que fue editado ya no coincide con la serie de criterios definidos se mostrará el texto correspondiente se mostrará en color gris. Por último, si un ticket ha sido creado y coincide con los criterios definidos en la página de consulta, el texto será mostrado en negrita.</p>
+<p>Los resultados de la página de consulta pueden actualizarse, a la vez eliminar estos indicadores de estado al hacer de nuevo click en el botón <em>Actualizar</em>.</p>
+</div>
+<div class="section" id="almacenando-consultas">
+<h2>Almacenando consultas<a class="headerlink" href="#almacenando-consultas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Mientras tanto Trac no le permita almacenar consultas personalizadas y de alguna manera mostrar su disponibilidad en una lista navegable, usted puede guardar las referencias hacia dichas consultas personalizadas desde el contenido Wiki, tal como se describirá a continuación.</p>
+</div>
+<div class="section" id="usando-los-enlaces-de-trac">
+<span id="usingtraclinks"></span><h2>Usando los enlaces de Trac<a class="headerlink" href="#usando-los-enlaces-de-trac" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Usted probablemente desea almacenar algunas consultas de tal manera que las use posteriormente. Usted puede hacer esto al generar un enlace a la página de consultas personalizadas desde cualquier página Wiki.</p>
+<div class="highlight-trac-wiki"><div class="highlight"><pre><span class="k">[query:status=new|assigned|reopened&amp;version=1.0</span><span class="s"> Tickets activos para versión 1.0</span><span class="k">]</span>
+</pre></div>
+</div>
+<p>El cual es mostrado como:</p>
+<blockquote>
+Ticket activos para versión 1.0</blockquote>
+<p>Lo anterior usa un lenguaje de consultas bastante sencillo para especificar los criterios de busqueda. Para mayor información continue leyendo más abajo.</p>
+<p>Alternativamente, usted puede copiar la cadena de busqueda que muestra los resultados de la página de consultas personalizadas y luego llevarla hacia un enlace desde el Wiki, incluyendo el carácter <tt class="docutils literal"><span class="pre">?</span></tt> tal como se muestra a continuación:</p>
+<div class="highlight-trac-wiki"><div class="highlight"><pre><span class="k">[query:?status=new&amp;status=assigned&amp;status=reopened&amp;group=owner</span><span class="s"> Tickets asignados agrupados por dueño</span><span class="k">]</span>
+</pre></div>
+</div>
+<p>Lo anterior se mostrará como:</p>
+<blockquote>
+Ticket asignados agrupados por dueño</blockquote>
+</div>
+<div class="section" id="usando-el-macro-ticketquery">
+<h2>Usando el macro <tt class="docutils literal"><span class="pre">[[TicketQuery]]</span></tt><a class="headerlink" href="#usando-el-macro-ticketquery" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El macro <tt class="docutils literal"><span class="pre">TicketQuery</span></tt> le permite mostrar la lista de ticket que cumplen ciertos criterios donde sea que usted pueda usar el formato Wiki.</p>
+<p>Ejemplo:</p>
+<div class="highlight-trac-wiki"><div class="highlight"><pre><span class="k">[[TicketQuery(version=0.6|0.7&amp;resolution=duplicate)]]</span>
+</pre></div>
+</div>
+<p>Lo cual mostrará algo como:</p>
+<blockquote>
+Sin resultados</blockquote>
+<p>Tal como <a class="reference internal" href="#usingtraclinks"><em>Usando los enlaces de Trac</em></a>, el parámetro de este macro espera una cadena de consulta cuyo formato cumpla con las reglas del simple <a class="reference internal" href="#querylanguage"><em>lenguaje de consultas de tickets</em></a>.</p>
+<p>Una representación más compacta sin usar los sumarios de los tickets también se encuentra disponible:</p>
+<div class="highlight-trac-wiki"><div class="highlight"><pre><span class="k">[[TicketQuery(version=0.6|0.7&amp;resolution=duplicate, compact)]]</span>
+</pre></div>
+</div>
+<p>Lo cual mostrará algo como:</p>
+<blockquote>
+Sin resultados</blockquote>
+<p>Finalmente si usted desea recibir solo el número de defectos que coinciden con una consulta puede hacerlo con el parámetro <tt class="docutils literal"><span class="pre">count</span></tt>.</p>
+<div class="highlight-trac-wiki"><div class="highlight"><pre><span class="k">[[TicketQuery(version=0.6|0.7&amp;resolution=duplicate, count)]]</span>
+</pre></div>
+</div>
+<p>Lo cual mostrará algo como:</p>
+<blockquote>
+0</blockquote>
+</div>
+<div class="section" id="lenguaje-de-las-consultas">
+<span id="querylanguage"></span><h2>Lenguaje de las consultas<a class="headerlink" href="#lenguaje-de-las-consultas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Tanto enlaces de Trac <tt class="docutils literal"><span class="pre">query:</span></tt> como el macro <tt class="docutils literal"><span class="pre">[[TicketQuery]]</span></tt> usan un lenguaje de consultas reducido para especificar los filtros en las consultas. Básicamente, los filtros son separados por <em>ampersand</em> (<tt class="docutils literal"><span class="pre">&amp;</span></tt>). Entonces cada filtro consiste del nombre del campo de un ticket, un operador, y uno o más valores. Más de un valor son separados por una tubería (<tt class="docutils literal"><span class="pre">|</span></tt>), esto significa que ese filtro deberá coincidir con cualquiera de los valores suministrados.</p>
+<p>Los operadores disponibles son:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operador</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">=</span></tt></td>
+<td>El contenido del campo coincide exactamente con uno de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">~=</span></tt></td>
+<td>El contenido del campo contiene uno o más de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">!^=</span></tt></td>
+<td>El contenido del campo comienza con uno de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">$=</span></tt></td>
+<td>El contenido de campo finaliza con uno de los valores</td>
+</tr>
+</tbody>
+</table>
+<p>Todos estos operadores pueden ser negados:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Operador</th>
+<th class="head">Descripción</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">!=</span></tt></td>
+<td>El contenido del campo no coincide con ninguno de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">!~=</span></tt></td>
+<td>El contenido del campo no contiene ninguno de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">!!^=</span></tt></td>
+<td>El contenido del campo no comienza con ninguno de los valores</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">!$=</span></tt></td>
+<td>El contenido del campo no finaliza con ninguno de los valores</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea También<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="TracTickets.html#tractickets"><em>Tickets de Trac</em></a></li>
+<li><a class="reference external" href="TracReports.html#tracreports"><em>Reportes en Trac</em></a></li>
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Ejecutando consultas personalizadas en el sistema de Tickets</a><ul>
+<li><a class="reference external" href="#filtros">Filtros</a></li>
+<li><a class="reference external" href="#navegando-tickets">Navegando tickets</a></li>
+<li><a class="reference external" href="#almacenando-consultas">Almacenando consultas</a></li>
+<li><a class="reference external" href="#usando-los-enlaces-de-trac">Usando los enlaces de Trac</a></li>
+<li><a class="reference external" href="#usando-el-macro-ticketquery">Usando el macro <tt class="docutils literal"><span class="pre">[[TicketQuery]]</span></tt></a></li>
+<li><a class="reference external" href="#lenguaje-de-las-consultas">Lenguaje de las consultas</a></li>
+<li><a class="reference external" href="#vea-tambien">Vea También</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracQuery.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

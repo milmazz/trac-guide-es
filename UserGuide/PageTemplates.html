@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plantilla de páginas Wiki &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="plantilla-de-paginas-wiki">
+<span id="pagetemplates"></span><h1>Plantilla de páginas Wiki<a class="headerlink" href="#plantilla-de-paginas-wiki" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Esta característica se encuentra presente desde Trac <a class="reference external" href="http://trac.edgewall.org/milestone/0.11">0.11</a></p>
+<p>El contenido por omisión para una nueva página del Wiki puede elegirse
+a partir de una lista de páginas plantilla.</p>
+<p>Esta lista se genera a partir de todas las páginas wiki existentes que
+tienen un nombre que comienza por <tt class="docutils literal"><span class="pre">PageTemplates/</span></tt></p>
+<p>El contenido inicial de una nueva página será el contenido de la página
+plantilla elegida, o una página en blanco si la entrada especial <em>(blank
+page)</em> es seleccionada. Cuando no existen páginas wiki que coincidan con
+ese prefijo, el contenido inicial siempre será una página en blanco y la
+lista desplegable de páginas plantilla no se mostrará (Por ejemplo, esto es
+similar al comportamiento que se tiene en una nueva instalación de Trac).</p>
+<p>Para crear una nueva plantilla, simplemente cree una nueva página que
+tenga un nombre que comience con <tt class="docutils literal"><span class="pre">PageTemplates/</span></tt></p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Puede incluso crear la página <tt class="docutils literal"><span class="pre">PageTemplates/Template</span></tt> para facilitar la creación de nuevas páginas plantilla.</p>
+</div>
+<p>Para visualizar la lista de plantillas disponibles puede hacer uso del
+macro <tt class="docutils literal"><span class="pre">[[TitleIndex(PageTemplates/)]]</span></tt></p>
+<p>Vea también: <a class="reference external" href="TracWiki.html#tracwiki"><em>Wiki de Trac</em></a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/PageTemplates.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

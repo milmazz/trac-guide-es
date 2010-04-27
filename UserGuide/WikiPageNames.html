@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Nombres de las páginas Wiki &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="nombres-de-las-paginas-wiki">
+<span id="wikipagenames"></span><h1>Nombres de las páginas Wiki<a class="headerlink" href="#nombres-de-las-paginas-wiki" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Los nombres de las páginas Wiki comúnmente usan la convención
+CamelCase. Dentro del texto wiki, cualquier palabra en CamelCase
+automáticamente se convierte en un hiperenlace hacia la página wiki con
+ese nombre.</p>
+<p>Los nombres de páginas en CamelCase deben seguir las siguientes reglas:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>El nombre debe consistir de <strong>caracteres alfabéticos solamente</strong>. No son permitidos los digitos, espacios, signos de puntuación o signos de subrayado.</li>
+<li>El nombre debe al menos contener dos letras mayúsculas.</li>
+<li>El primer caracter debe ser mayúscula.</li>
+<li>Cualquier letra mayúscula debe estar seguida por una o más letras en minúscula.</li>
+<li>El uso de la barra o <em>slash</em> (<tt class="docutils literal"><span class="pre">/</span></tt>) es permitido en los nombres de las páginas (posiblemente representando jerarquía).</li>
+</ol>
+</blockquote>
+<p>Si desea crear una página wiki que no sigue las reglas CamelCase puede
+usar la siguiente sintaxis:</p>
+<blockquote>
+<ul class="simple">
+<li>[wiki:Wiki_page], [wiki:ISO9000]</li>
+<li>[wiki:&#8221;El Espacio Importa&#8221;] esta nombre de página incluye caracteres de espacio</li>
+<li>o simplemente: [&#8220;NombrePaginaWiki&#8221;]s (MoinMoin&#8217;s internal free links style)</li>
+</ul>
+</blockquote>
+<p>Esto sería representado como:</p>
+<blockquote>
+<ul class="simple">
+<li>[wiki:Wiki_page], [wiki:ISO9000]</li>
+<li>[wiki:&#8221;Space Matters&#8221;] that page name embeds space characters</li>
+<li>or simply: [&#8220;WikiPageName&#8221;]s (!MoinMoin&#8217;s internal free links style)</li>
+</ul>
+</blockquote>
+<p>A partir de Trac 0.11, también es posible enlazar a una <em>versión</em>
+específica de una página Wiki, así como haría con una versión
+específica de un fichero, por ejemplo: WikiStart&#64;1</p>
+<p>Vea también TracLinks#QuotingspaceinTracLinks.</p>
+<p>Finalmente, tal como se muestra en la línea de arriba, también puede
+agregar un <em>ancla</em> al nombre de una página Wiki, con el fin de enlazar
+con una sección específica dentro de esa página. El ancla puede verse fácilmente
+al colocar el cursor del ratón encima del encabezado de la sección,
+luego al hacer clic en el signo de párrafo [[html(&amp;para;)]] que
+aparece al final. El ancla usualmente es generado automáticamente, pero
+también es posible especificarlo de manera explícita. Para mayor
+información sobre este último punto vea
+WikiFormatting#using-explicit-id-in-heading.</p>
+<p>Vea También:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="WikiNewPage.html#wikinewpage"><em>Pasos para crear una página Wiki</em></a></li>
+<li><em class="xref">Formato del wiki</em></li>
+<li><a class="reference external" href="TracWiki.html#tracwiki"><em>El Wiki de Trac</em></a></li>
+<li><em class="xref">Enlaces en Trac</em></li>
+</ul>
+</blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/WikiPageNames.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

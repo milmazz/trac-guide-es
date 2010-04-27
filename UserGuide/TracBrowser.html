@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Visor del repositorio &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="visor-del-repositorio">
+<span id="tracbrowser"></span><h1>Visor del repositorio<a class="headerlink" href="#visor-del-repositorio" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El visor del repositorio que ofrece Trac puede ser usado para
+explorar directorios y revisiones específicas de ficheros
+almacenados en el repositorio del sistema de control de
+versiones configurado.</p>
+<p>Las entradas de los directorios son mostradas en listas con columnas
+ordenables. Las listas pueden ser ordenadas por <em>nombre</em>, <em>tamaño</em> o
+<em>fecha</em> haciendo clic en la cabecera de la columna. El orden puede ser
+invertido al hacer clic de nuevo en la cabecera de la columna
+correspondiente.</p>
+<p>El visor puede ser usado para navegar a través de la estructura de
+directorios al hacer clic sobre ellos. Haciendo clic sobre un nombre
+de fichero mostrará el contenido del mismo. Haciendo clic en el número
+de revisión de un fichero o directorio le mostrará el historial de revisiones
+de Trac para ese directorio o fichero. Note que también existe un enlace
+de <em>historial de revisiones</em> que hará lo mismo para la ruta que está
+siendo examinada actualmente.</p>
+<p>También es posible visualizar los directorios o ficheros tal como eran
+en su historia, en cualquier revisión del repositorio. El comportamiento
+por omisión es mostrar la última revisión, pero puede elegir cualquier otro
+número de revisión al usar el campo de entrada <em>Ver Revisión</em> que se
+encuentra en el tope de la página.</p>
+<p>Desde la versión 0.11 de Trac, en el tope de la página, existe un menú
+desplegable que puede usar para seleccionar algunas ubicaciones interesantes
+en el repositorio, por ejemplo las ramas (<em>branches</em>) o etiquetas (<em>tags</em>).
+Para <em>subversion</em>, esta lista contiene por omisión algunas ramas (<tt class="docutils literal"><span class="pre">trunk</span></tt>
+y cualquier sub-directorio que se encuentre en el nivel superior de la última
+revisión de los <tt class="docutils literal"><span class="pre">branches</span></tt>) y algunas etiquetas (cualquier sub-directorio
+que se encuentre en el nivel superior de la última revisión de <tt class="docutils literal"><span class="pre">tags</span></tt>).
+Esta lista puede ser configurada para casos más avanzados.</p>
+<p>Si su navegador tiene la opción de Javascript activado, usted podrá extender o
+contraer directorios en sitio al hacer clic en la flecha que se encuentra al lado
+izquierdo de los directorios. Alternativamente, el teclado también puede ser usado
+para esto: utilice <tt class="docutils literal"><span class="pre">j</span></tt> y <tt class="docutils literal"><span class="pre">k</span></tt> para ir a la entrada siguiente o previa, y <tt class="docutils literal"><span class="pre">o</span></tt>
+( o <tt class="docutils literal"><span class="pre">Enter</span></tt>) para expander o contraer el estado del directorio seleccionado
+o visitar el fichero seleccionado.</p>
+<p>Para el soporte que incluye Trac con <em>subversion</em>, algunas características adicionales
+están disponibles:</p>
+<blockquote>
+<ul class="simple">
+<li>Soporte para la propiedad <tt class="docutils literal"><span class="pre">svn:needs-lock</span></tt></li>
+<li>Soporte para la propiedad <tt class="docutils literal"><span class="pre">svn:externals</span></tt></li>
+</ul>
+</blockquote>
+<div class="section" id="vea-tambien">
+<h2>Vea También<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="../index.html#tracguide"><em>Guía de Trac</em></a></li>
+<li><a class="reference external" href="TracChangeSet.html#tracchangeset"><em>Conjunto de cambios en Trac</em></a></li>
+<li><em class="xref">Permisos granulares en Trac</em></li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Visor del repositorio</a><ul>
+<li><a class="reference external" href="#vea-tambien">Vea También</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracBrowser.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>

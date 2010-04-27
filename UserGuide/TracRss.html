@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Usando RSS con Trac &mdash; Trac Manual del Usuario v0.1a documentation</title>
+    <link rel="stylesheet" href="../static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1a',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <link rel="top" title="Trac Manual del Usuario v0.1a documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="usando-rss-con-trac">
+<span id="tracrss"></span><h1>Usando RSS con Trac<a class="headerlink" href="#usando-rss-con-trac" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Muchos de los módulos de Trac soportan la sindicación de contenido usando el formato XML RSS (<em>Really Simple Syndication</em>).</p>
+<p>Usando la característica de subscripción al <strong>RSS</strong> en Trac, le permitirá seguir fácilmente el progreso del proyecto, ya sea un conjunto de inconformidades o incluso cambios en un simple archivo.</p>
+<p>Trac soporta sindicación <strong>RSS</strong> en:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="TracTimeline.html#tractimeline"><em>Línea de Tiempo</em></a>, utilice la sindicación RSS para <em>subscribirse a los eventos del proyecto</em>. Mantengase informado acerca del progreso general del proyecto desde su visor favorito de RSS.</li>
+<li><a class="reference external" href="TracTickets.html#tractickets"><em>Tickets</em></a>, <a class="reference external" href="TracReports.html#tracreports"><em>Reportes</em></a> y <a class="reference external" href="TracQuery.html#tracquery"><em>Consultas</em></a>, permite sindicar tanto reportes así como resultados de consultas sobre el sistema de Tickets. Sea notificado acerca de inconformidades importantes y relevantes en el sistema de tickets.</li>
+<li>Visor y Registro de revisiones, sindicación de cambios en archivos. Manténgase actualizado con los cambios en archivos o directorios específicos.</li>
+</ul>
+</blockquote>
+<div class="section" id="como-acceder-a-los-datos-rss">
+<h2>¿Cómo acceder a los datos RSS?<a class="headerlink" href="#como-acceder-a-los-datos-rss" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Donde sea que la sindicación RSS esté disponible en Trac, usted encontrará un pequeño ícono <strong>XML</strong> de color naranja, típicamente estará ubicado al fondo de la página. Haciendo click en el botón podrá acceder a la sindicación RSS para ese recurso en específico.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Diferentes módulos proveen diferentes datos en sus sindicaciones RSS. Usualmente, la información sindicada corresponde con la vista actual. Por ejemplo, si usted hace click en el enlace RSS de la página de reportes, la sindicación se basará en ese reporte. Esto puede ser explicado al pensar que la sindicación RSS es una <em>vista alternativa de los datos que actualmente son visualizados</em>.</p>
+</div>
+</div>
+<div class="section" id="enlaces">
+<h2>Enlaces<a class="headerlink" href="#enlaces" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://blogs.law.harvard.edu/tech/rss">Especificación RSS</a>.</li>
+<li><a class="reference external" href="http://www.mozilla.org/products/firefox/">Mozilla Firefox</a> soporta <a class="reference external" href="http://www.mozilla.org/products/firefox/live-bookmarks.html">marcadores en vivo</a> usando RSS.</li>
+<li><a class="reference external" href="http://sage.mozdev.org">Sage</a> es un agregador de RSS y Atom para Mozilla Firefox.</li>
+<li><a class="reference external" href="http://kde.org">KDE</a> <a class="reference external" href="http://pim.kde.org/users.php">PIM</a> es un lector de RSS para sistemas Linux/BSD/*n*x.</li>
+<li><a class="reference external" href="http://liferea.sourceforge.net/">Liferea</a> es un lector de RSS basado en GTK2 para Linux.</li>
+<li><a class="reference external" href="http://akregator.sourceforge.net/">Akregator</a> Es un lector de RSS para KDE, ahora es parte de KDE-PIM.</li>
+<li><a class="reference external" href="http://www.wizzrss.com/Welcome.php">WizzRSS</a> es un lector de <em>feeds</em> para Firefox.</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="vea-tambien">
+<h2>Vea También<a class="headerlink" href="#vea-tambien" title="Enlazar permanentemente con este título">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="../index.html#tracguide"><em>Referencia de Trac</em></a>.</li>
+<li><a class="reference external" href="TracTimeline.html#tractimeline"><em>Línea de tiempo</em></a>.</li>
+<li><a class="reference external" href="TracReports.html#tracreports"><em>Reportes</em></a>.</li>
+<li><a class="reference external" href="TracBrowser.html#tracbrowser"><em>Visualizador de código</em></a>.</li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Usando RSS con Trac</a><ul>
+<li><a class="reference external" href="#como-acceder-a-los-datos-rss">¿Cómo acceder a los datos RSS?</a></li>
+<li><a class="reference external" href="#enlaces">Enlaces</a></li>
+<li><a class="reference external" href="#vea-tambien">Vea También</a></li>
+</ul>
+</li>
+</ul>
+
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/UserGuide/TracRss.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice General"
+             >índice</a></li>
+        <li><a href="../index.html">Trac Manual del Usuario v0.1a documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Milton Mazzarri.
+      Actualizado por última vez en Apr 26, 2010.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
+    </div>
+  </body>
+</html>
